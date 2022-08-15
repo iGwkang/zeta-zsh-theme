@@ -25,6 +25,15 @@ local highlight_bg=$bg[red]
 
 local zeta='ζ'
 
+# Indicator
+function get_indicator {
+     local indicator='$'
+    if [[ "$USER" == 'root' ]]; then
+        indicator='#'
+    fi
+    echo $indicator
+}
+
 # Machine name.
 function get_box_name {
     if [ -f ~/.box-name ]; then
@@ -98,7 +107,7 @@ function get_space {
 # > command
 function print_prompt_head {
     local left_prompt="\
-%{$blue%}# \
+%{$blue%}$(get_indicator) \
 %{$green_bold%}$(get_usr_name)\
 %{$blue%}@\
 %{$cyan_bold%}$(get_box_name): \
