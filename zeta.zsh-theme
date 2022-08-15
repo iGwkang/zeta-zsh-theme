@@ -47,7 +47,8 @@ function get_box_name {
 function get_usr_name {
     local name="%n"
     if [[ "$USER" == 'root' ]]; then
-        name="%{$highlight_bg%}%{$white_bold%}$name%{$reset_color%}"
+        # name="%{$highlight_bg%}%{$white_bold%}$name%{$reset_color%}"
+        name="%{$red_bold%}$name%{$reset_color%}"
     fi
     echo $name
 }
