@@ -21,17 +21,19 @@ local magenta_bold=$fg_bold[magenta]
 local cyan_bold=$fg_bold[cyan]
 local white_bold=$fg_bold[white]
 
+local bold=$white_bold
+
 local highlight_bg=$bg[red]
-local highlight_green=$FG[010]
-local highlight_red=$FG[009]
+local highlight_green=$bold$FG[010]
+local highlight_red=$bold$FG[009]
 
 local zeta='ζ'
 
 local sh_color=$FG[012]
-local at_color=$FG[177]
-local user_color=$FG[049]
-local host_color=$FG[105]
-local dir_color=$FG[081]
+local at_color=$bold$FG[177]
+local user_color=$bold$FG[049]
+local host_color=$bold$FG[105]
+local dir_color=$bold$FG[081]
 local git_color=$FG[046]
 
 # Indicator
@@ -117,7 +119,6 @@ function get_space {
 # > command
 function print_prompt_head {
     local left_prompt="\
-%{$white_bold%}\
 %{$sh_color%}$(get_indicator) \
 %{$user_color%}$(get_usr_name)\
 %{$at_color%}@\
@@ -130,9 +131,9 @@ $(get_git_prompt) "
 
 function get_prompt_indicator {
     if [[ $? -eq 0 ]]; then
-        echo "%{$white_bold%}%{$highlight_green%}$zeta %{$reset_color%}"
+        echo "%{$highlight_green%}$zeta %{$reset_color%}"
     else
-        echo "%{$white_bold%}%{$highlight_red%}$zeta %{$reset_color%}"
+        echo "%{$highlight_red%}$zeta %{$reset_color%}"
     fi
 }
 
