@@ -22,8 +22,17 @@ local cyan_bold=$fg_bold[cyan]
 local white_bold=$fg_bold[white]
 
 local highlight_bg=$bg[red]
+local highlight_green=$FG[010]
+local highlight_red=$FG[009]
 
 local zeta='ζ'
+
+local sh_color=$FG[012]
+local at_color=$FG[213]
+local user_color=$FG[049]
+local host_color=$FG[105]
+local dir_color=$FG[081]
+local git_color=$FG[046]
 
 # Indicator
 function get_indicator {
@@ -59,7 +68,7 @@ function get_current_dir {
 }
 
 # Git info.
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$blue_bold%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$git_color%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$green_bold%} ✔ "
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$red_bold%} ✘ "
@@ -108,11 +117,12 @@ function get_space {
 # > command
 function print_prompt_head {
     local left_prompt="\
-%{$blue%}$(get_indicator) \
-%{$green_bold%}$(get_usr_name)\
-%{$blue%}@\
-%{$cyan_bold%}$(get_box_name): \
-%{$yellow_bold%}$(get_current_dir)%{$reset_color%}\
+%{$white_bold%}\
+%{$sh_color%}$(get_indicator) \
+%{$user_color%}$(get_usr_name)\
+%{$at_color%}@\
+%{$host_color%}$(get_box_name): \
+%{$dir_color%}$(get_current_dir)%{$reset_color%}\
 $(get_git_prompt) "
     local right_prompt="%{$white%}[$(get_time_stamp)]%{$reset_color%} "
     print -rP "$left_prompt$(get_space $left_prompt $right_prompt)$right_prompt"
@@ -120,9 +130,9 @@ $(get_git_prompt) "
 
 function get_prompt_indicator {
     if [[ $? -eq 0 ]]; then
-        echo "%{$magenta_bold%}$zeta %{$reset_color%}"
+        echo "%{$white_bold%}%{$highlight_green%}$zeta %{$reset_color%}"
     else
-        echo "%{$red_bold%}$zeta %{$reset_color%}"
+        echo "%{$white_bold%}%{$highlight_red%}$zeta %{$reset_color%}"
     fi
 }
 
