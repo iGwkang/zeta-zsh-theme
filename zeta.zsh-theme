@@ -28,7 +28,7 @@ local highlight_red=$FG[009]
 local zeta='ζ'
 
 local sh_color=$FG[012]
-local at_color=$FG[213]
+local at_color=$FG[177]
 local user_color=$FG[049]
 local host_color=$FG[105]
 local dir_color=$FG[081]
